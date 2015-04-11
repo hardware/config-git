@@ -1,0 +1,74 @@
+[user]
+	name = Quentin PANISSIER
+	email = contact@meshup.net
+	signingkey = EC6DF6F90263EDEA
+
+[core]
+	editor = vim
+	whitespace = trailing-space,space-before-tab,indent-with-non-tab
+	askpass =
+
+[web]
+	browser = firefox
+
+[color]
+	ui = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold  # line info
+    old = red            # deletions
+    new = green          # additions
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[alias]
+	co = checkout
+	br = branch
+	up = rebase
+	ci = commit
+
+    # Push all commits, tags...
+    pa = push all --all
+
+    # View abbreviated SHA, description, and history graph of the latest 20 commits
+    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+
+    # View the current working tree status using the short format
+    s = status -s
+
+    # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+    # Clone a repository including all submodules
+    c = clone --recursive
+
+    # Commit all changes
+    ca = !git add -A && git commit -av
+
+    # Show verbose output about tags, branches or remotes
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
+
+    # Switch to a branch, creating it if necessary
+    switch = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+[push]
+	default = simple
+
+[apply]
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
+
+[help]
+    # Automatically correct and execute mistyped commands
+    autocorrect = 1
