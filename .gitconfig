@@ -31,10 +31,43 @@
     untracked = cyan
 
 [alias]
-	co = checkout
-	br = branch
-	up = rebase
-	ci = commit
+	w  = add
+    u  = update
+    b  = branch
+    d  = diff
+    ci = commit
+    cm = commit -m
+    co = checkout
+    st = status
+
+    # List
+    tags     = tag    --list
+    branches = branch --all
+    remotes  = remote --verbose
+
+    # Fetch / Merge
+    # Explicit is better than implicit.  If we want to merge
+    # we should do so ourselves.
+    pull    = pull  --ff-only
+    up      = merge --ff-only
+    join    = merge --no-ff
+
+    ; •     │    o
+    ;  \    │    o
+    ;   o   │    o
+    ;   o   │    •
+    ;   o   │    •
+    ;  /    │
+    ; •     │
+    ; •     │
+    ; no-ff │ ff-only
+
+    # Commit
+    amend = commit --amend
+
+    # Undo
+    discard      = reset --hard HEAD
+    unstage      = reset --soft HEAD
 
     # Push all commits, tags...
     pa = push all --all
@@ -54,16 +87,11 @@
     # Commit all changes
     ca = !git add -A && git commit -av
 
-    # Show verbose output about tags, branches or remotes
-    tags = tag -l
-    branches = branch -a
-    remotes = remote -v
-
     # Switch to a branch, creating it if necessary
     switch = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
 [push]
-	default = simple
+	default = current
 
 [apply]
     # Detect whitespace errors when applying a patch
